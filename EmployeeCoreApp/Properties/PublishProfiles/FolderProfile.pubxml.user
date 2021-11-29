@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <_PublishTargetUrl>D:\Work\Projects\AspCoreApp\bin\Release\netcoreapp3.1\publish\EmployeePOC</_PublishTargetUrl>
+    <History>True|2021-09-06T09:58:22.9945190Z;True|2021-09-06T15:23:52.4204591+05:30;True|2021-09-06T15:23:15.3669520+05:30;</History>
+  </PropertyGroup>
+</Project>
