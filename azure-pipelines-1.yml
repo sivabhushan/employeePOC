@@ -47,4 +47,23 @@ inputs:
   DockerRepository: 'repository'
   DockerImageTag: '$(Build.BuildId)'
   AppSettings: '-DOCKER_REGISTRY_SERVER_PASSWORD H/o9sS024796scANK8rYwSXHdqanA4ir -WEBSITES_PORT 5000'
-  
+
+- stage: Deploy
+  displayName: Deploy app serivce 
+  jobs:
+  - job: Deploy
+    displayName: Deploy
+    pool:
+      vmImage: $(vmImageName)
+    steps:
+    - task: AzureRmWebAppDeployment@4
+      inputs:
+        ConnectionType: 'AzureRM'
+        azureSubscription: 'Microsoft_Hitech_POC (fa631513-4629-4e4c-88ee-2c19ac784c4a)'
+        appType: 'webAppContainer'
+        WebAppName: 'employeepoc-dev'
+        DockerNamespace: 'employeepoc.azurecr.io'
+        DockerRepository: 'repository'
+        DockerImageTag: '$(Build.BuildId)'
+        AppSettings: '-DOCKER_REGISTRY_SERVER_PASSWORD H/o9sS024796scANK8rYwSXHdqanA4ir -WEBSITES_PORT 5000'
+
