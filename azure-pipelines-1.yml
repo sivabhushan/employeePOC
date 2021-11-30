@@ -20,28 +20,11 @@ variables:
   vmImageName: 'ubuntu-latest'
 
 stages:
-- stage: Build
+- stage: Build and Test
   displayName: Build and push stage
   jobs:
   - job: Build
     displayName: Build
-    pool:
-      vmImage: $(vmImageName)
-    steps:
-    - task: Docker@2
-      displayName: Build and push an image to container registry
-      inputs:
-        command: buildAndPush
-        repository: $(imageRepository)
-        dockerfile: $(dockerfilePath)
-        containerRegistry: $(dockerRegistryServiceConnection)
-        tags: |
-          $(tag)
-- stage: Test
-  displayName: Test  
-  jobs:
-  - job: Test
-    displayName: Test
     pool:
       vmImage: $(vmImageName)
     steps:
@@ -52,6 +35,16 @@ stages:
         scannerMode: 'MSBuild'
         projectKey: 'sivak0645_sivak'
         projectName: 'sivak'
+    - task: Docker@2
+      displayName: Build and push an image to container registry
+      inputs:
+        command: buildAndPush
+        repository: $(imageRepository)
+        dockerfile: $(dockerfilePath)
+        containerRegistry: $(dockerRegistryServiceConnection)
+        tags: |
+          $(tag)
+    - task: SonarCloudAnalyze@1
     - task: SonarCloudPublish@1
       inputs:
         pollingTimeoutSec: '300'
