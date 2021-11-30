@@ -47,3 +47,4 @@ inputs:
   DockerRepository: 'repository'
   DockerImageTag: '$(Build.BuildId)'
   AppSettings: '-DOCKER_REGISTRY_SERVER_PASSWORD H/o9sS024796scANK8rYwSXHdqanA4ir -WEBSITES_PORT 5000'
+  
