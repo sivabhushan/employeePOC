@@ -37,6 +37,24 @@ stages:
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
+- stage: Test
+  displayName: Test  
+  jobs:
+  - job: Test
+    displayName: Test
+    pool:
+      vmImage: $(vmImageName)
+    steps:
+    - task: SonarCloudPrepare@1
+      inputs:
+        SonarCloud: 'sonarcloud'
+        organization: 'sivak0645'
+        scannerMode: 'MSBuild'
+        projectKey: 'sivak0645_sivak'
+        projectName: 'sivak'
+    - task: SonarCloudPublish@1
+      inputs:
+        pollingTimeoutSec: '300'
 - stage: Deploy
   displayName: Deploy app serivce 
   jobs:
