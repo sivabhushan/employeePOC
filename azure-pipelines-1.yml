@@ -18,9 +18,8 @@ variables:
 
   # Agent VM image name
   pool:
-    name: Default
-    demands:
-     - agent.name -equals javapocwinmachi
+    name: 'javapocwinmachi'
+    
 
 stages:
 - stage: Build
