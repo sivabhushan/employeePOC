@@ -3,7 +3,7 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/docker
 
 trigger:
-- main
+- master
 
 resources:
 - repo: self
@@ -29,7 +29,7 @@ stages:
   - job: Build
     displayName: Build
     pool:
-      vmImage: $(vmImageName)
+      name: $(name)
     steps:
     - task: SonarCloudPrepare@1
       inputs:
@@ -57,7 +57,7 @@ stages:
   - job: Deploy
     displayName: Deploy
     pool:
-      vmImage: $(vmImageName)
+      name: $(name)
     steps:
     - task: AzureRmWebAppDeployment@4
       inputs:
