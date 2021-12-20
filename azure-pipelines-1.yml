@@ -17,7 +17,10 @@ variables:
   tag: '$(Build.BuildId)'
 
   # Agent VM image name
-  vmImageName: 'ubuntu-latest'
+  pool:
+  name: Default
+  demands:
+   - agent.name -equals javapocwinmachi
 
 stages:
 - stage: Build
